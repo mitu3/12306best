@@ -5,11 +5,11 @@ from dictfile import address
 
 
 
-startd1 ='北京'    #  开始站
-endd1 ='天津'        #  到达站
-date ='2018-01-11'   #  时间
-checi = 'k7727'           #  所有    0
-seattype = 0         # 一等座  1   二等座  2   软卧  3    硬卧   4      硬座  5     无座  6    所有  0
+startd1 ='杭州'      #  开始站
+endd1 ='六盘水'        #  到达站
+date ='2018-01-15'   #  时间
+checi = 'k739'      #  所有    0
+seattype = 4         # 一等座   1   二等座  2   软卧  3    硬卧   4      硬座  5     无座  6    所有  0
 
 from_station =address(startd1)
 to_station =address(endd1)
@@ -67,13 +67,13 @@ def returnxpath(date, from_station, to_station, checi , seattype):
         if seattype == 0 :
             for i in alldict.values():
                 for j in range(6):
-                    if i[j + 1] != '--' or '无':
+                    if i[j + 1] != '--' and i[j + 1] != '无':
                         return i[7]
                     else:
                         return 0
         else:
             for i in alldict.values():
-                if i[seattype] != '--' or '无':
+                if i[seattype] != '--' and i[seattype] != '无':
                     return i[7]
                 else:
                     return 0
@@ -81,16 +81,18 @@ def returnxpath(date, from_station, to_station, checi , seattype):
         try:
             if seattype == 0:
                 i = alldict[isall]
-                if i[seattype] != '--' or '无':
+                if i[seattype] != '--' and  i[seattype] != '无':
                     return i[7]
                 else:
                     return 0
 
             else:
                 i = alldict[isall]
-                if i[seattype] != '--' or '无':
+                if i[seattype] !=  '--' and i[seattype] != '无':
+                    print(i[seattype])
                     return i[7]
                 else:
+                    print(i[seattype])
                     return 0
         except:
             return 0
@@ -101,4 +103,5 @@ def run():
 
     return r
 
-run()
+R = run()
+print(R)
