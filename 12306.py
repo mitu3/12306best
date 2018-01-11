@@ -92,8 +92,10 @@ def book_proc(sel, result):
 
     search_btn = WebDriverWait(sel, 10).until(
         EC.presence_of_element_located((By.XPATH, '//*[@id="ticket_{}"]/td[13]/a'.format(result))))
-    search_btn.click()
-
+    try:
+        search_btn.click()
+    except:
+        search_btn.send_keys(Keys.ENTER)
 
     cust_sel_url = 'https://kyfw.12306.cn/otn/leftTicket/init'
     while True:
@@ -151,14 +153,8 @@ if __name__ == '__main__':
             waitB = WebDriverWait(sel, 10 ,poll_frequency=1, ignored_exceptions=None).until(EC.presence_of_element_located((By.XPATH, '//*[@id="query_ticket"]')))
             # sel.switch_to_window(sel.window_handles[1])
             sreach_window = sel.current_window_handle
-            waitB.click()
-            # while True:
-            #     try:
-            #         r = waitB.click()
-            #         print(r)
-            #     except:
-            #         break
-
+            # waitB.click()
+            waitB.send_keys(Keys.ENTER)
             time.sleep(0.5)
             print('......')
         else:
