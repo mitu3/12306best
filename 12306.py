@@ -17,6 +17,7 @@ train_type = 'K'                          #车次类型
 def login_proc(username, password):
     # 打开登录页面
     sel = webdriver.Chrome()
+    sel.maximize_window()
     # sel=webdriver.Firefox('C:\\Users\chufusheng\Desktop')
     sel.implicitly_wait(30)
     login_url = 'https://kyfw.12306.cn/otn/login/init'
@@ -146,7 +147,18 @@ if __name__ == '__main__':
         result = run()
         print(result)
         if result == 0:
-            sel.find_element_by_id('query_ticket').click()
+            # sel.find_element_by_id('query_ticket').click()
+            waitB = WebDriverWait(sel, 10 ,poll_frequency=1, ignored_exceptions=None).until(EC.presence_of_element_located((By.XPATH, '//*[@id="query_ticket"]')))
+            # sel.switch_to_window(sel.window_handles[1])
+            sreach_window = sel.current_window_handle
+            waitB.click()
+            # while True:
+            #     try:
+            #         r = waitB.click()
+            #         print(r)
+            #     except:
+            #         break
+
             time.sleep(0.5)
             print('......')
         else:
