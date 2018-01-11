@@ -7,9 +7,9 @@ from dictfile import address
 
 startd1 ='杭州'      #  开始站
 endd1 ='六盘水'        #  到达站
-date ='2018-01-13'   #  时间
-checi = ['k111','k739']      #  所有    0    如果有 必须用list[ '','','' ]列出
-seattype = 0         # 一等座   1   二等座  2   软卧  3    硬卧   4      硬座  5     无座  6    所有  0
+date ='2018-01-19'   #  时间
+checi = ['k111','k7391']      #  所有    0    如果有 必须用list[ '','','' ]列出
+seattype = 2         # 一等座   1   二等座  2   软卧  3    硬卧   4      硬座  5     无座  6    所有  0
 
 from_station =address(startd1)
 to_station =address(endd1)
@@ -26,7 +26,7 @@ def returnxpath(date, from_station, to_station, checi , seattype):
            'purpose_codes=ADULT'.format(date, from_station, to_station)
     print(url)
 
-    req = requests.get(url)
+    req = requests.get(url, verify=False)
     json_response = req.content.decode('utf-8')  # 获取r的文本 就是一个json字符串
     # 将json字符串转换成dic字典对象
     # raw_trains = req.json()['data']['result']
@@ -93,7 +93,10 @@ def returnxpath(date, from_station, to_station, checi , seattype):
                             else:
                                 print('..')
                     else:
-                        continue
+                        if oneche == isall[-1]:
+                            return 0
+                        else:
+                            print('..')
 
                 else:
                     if oneche in alldict:
@@ -108,7 +111,10 @@ def returnxpath(date, from_station, to_station, checi , seattype):
                             else:
                                 print('..')
                     else:
-                        continue
+                        if oneche == isall[-1]:
+                            return 0
+                        else:
+                            print('..')
             except:
                 return 0
 # #
