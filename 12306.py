@@ -7,8 +7,8 @@ import time
 from nonstop import run
 
 
-USERNAME = '249836495@qq.com'
-PASSWORD = 'chu123466'
+USERNAME = '24983649@qq.com'
+PASSWORD = 'chu'
 value_fromstation = '%u5317%u4EAC%2CBJP'  # 始发站（深圳北）  在浏览器先搜索  然后查看cookies  字段  _jc_save_fromStation
 value_tostation = '%u5929%u6D25%2CTJP'    # 终点站（云浮东）    在浏览器先搜索  然后查看cookies  字段  _jc_save_toStation
 value_date = '2018-01-11'                 # 出发时间
