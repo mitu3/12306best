@@ -7,9 +7,9 @@ from dictfile import address
 
 startd1 ='杭州'      #  开始站
 endd1 ='六盘水'        #  到达站
-date ='2018-01-15'   #  时间
-checi = 'k739'      #  所有    0
-seattype = 4         # 一等座   1   二等座  2   软卧  3    硬卧   4      硬座  5     无座  6    所有  0
+date ='2018-01-13'   #  时间
+checi = ['k111','k739']      #  所有    0    如果有 必须用list[ '','','' ]列出
+seattype = 0         # 一等座   1   二等座  2   软卧  3    硬卧   4      硬座  5     无座  6    所有  0
 
 from_station =address(startd1)
 to_station =address(endd1)
@@ -34,6 +34,7 @@ def returnxpath(date, from_station, to_station, checi , seattype):
     raw_trains = (dict_json['data'])['result']
 
     alldict = {}
+    # print(raw_trains)
     for raw_train in raw_trains:
         # split切割之后得到的是一个列表
         data_list = raw_train.split("|")
@@ -51,7 +52,7 @@ def returnxpath(date, from_station, to_station, checi , seattype):
         soft_sleep = data_list[23] or "--"           #    type = 3
         hard_sleep = data_list[28] or "--"           #    type = 4
         hard_seat = data_list[29] or "--"            #    type = 5
-        no_seat = data_list[33] or "--"              #    type = 6
+        no_seat = data_list[26] or "--"              #    type = 6
         ddd = data_list[12]
         zhong = [train_no,first_class_seat,second_class_seat,soft_sleep,hard_sleep,hard_seat,
                  no_seat,xpath,from_station_code,to_station_code,start_time,arrive_time,time_duration,ddd]
@@ -78,24 +79,38 @@ def returnxpath(date, from_station, to_station, checi , seattype):
                 else:
                     return 0
     else:
-        try:
-            if seattype == 0:
-                i = alldict[isall]
-                if i[seattype] != '--' and  i[seattype] != '无':
-                    return i[7]
-                else:
-                    return 0
+        for oneche in isall:
+            print(oneche)
+            try:
+                if seattype == 0:
+                    if oneche in alldict:
+                        i = alldict[oneche]
+                        if i[seattype] != '--' and  i[seattype] != '无':
+                            return i[7]
+                        else:
+                            if oneche == isall[-1]:
+                                return 0
+                            else:
+                                print('..')
+                    else:
+                        continue
 
-            else:
-                i = alldict[isall]
-                if i[seattype] !=  '--' and i[seattype] != '无':
-                    print(i[seattype])
-                    return i[7]
                 else:
-                    print(i[seattype])
-                    return 0
-        except:
-            return 0
+                    if oneche in alldict:
+                        i = alldict[oneche]
+                        if i[seattype] !=  '--' and i[seattype] != '无':
+                            print(i[seattype])
+                            return i[7]
+                        else:
+                            print(i[seattype])
+                            if oneche == isall[-1]:
+                                return 0
+                            else:
+                                print('..')
+                    else:
+                        continue
+            except:
+                return 0
 # #
 #
 def run():
