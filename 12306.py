@@ -7,12 +7,13 @@ import time
 from nonstop import run
 
 
-USERNAME = '24983649@qq.com'
-PASSWORD = 'chu'
-value_fromstation = '%u5317%u4EAC%2CBJP'  # 始发站（深圳北）  在浏览器先搜索  然后查看cookies  字段  _jc_save_fromStation
-value_tostation = '%u5929%u6D25%2CTJP'    # 终点站（云浮东）    在浏览器先搜索  然后查看cookies  字段  _jc_save_toStation
-value_date = '2018-01-11'                 # 出发时间
+USERNAME = '249836495@qq.com'
+PASSWORD = 'chu123466'
+value_fromstation = '%u676D%u5DDE%2CHZH'  # 始发站（深圳北）  在浏览器先搜索  然后查看cookies  字段  _jc_save_fromStation
+value_tostation = '%u516D%u76D8%u6C34%2CUMW'    # 终点站（云浮东）    在浏览器先搜索  然后查看cookies  字段  _jc_save_toStation
+value_date = '2018-02-10'                 # 出发时间
 train_type = 'K'                          #车次类型
+# timer = 0
 
 def login_proc(username, password):
     # 打开登录页面
@@ -119,7 +120,8 @@ def book_proc(sel, result):
 
     time.sleep(1)
     try :
-        sel.find_element_by_id("normalPassenger_0").click()
+        # sel.find_element_by_id("normalPassenger_0").click()
+        sel.find_element_by_id("normalPassenger_1").click()
         sel.find_element_by_id("submitOrder_id").click()
         time.sleep(1)
 
@@ -145,6 +147,18 @@ if __name__ == '__main__':
     sel = login_proc(USERNAME, PASSWORD)
     # search_proc(sel, train_type, timer)
     search_proc(sel)
+    # if timer == 1:
+    #     while True:
+    #         current_time = time.localtime()
+    #         print(current_time)
+    #         if ((current_time.tm_hour == 14) and (current_time.tm_min >= 25) and (
+    #                     current_time.tm_sec >= 00)):
+    #             print (u'开始刷票...')
+    #             break
+    #         else:
+    #             time.sleep(5)
+    #             if current_time.tm_sec % 30 == 0:
+    #                 print (time.strftime('%H:%M:%S', current_time))
     while True:
         result = run()
         print(result)
