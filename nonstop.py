@@ -6,9 +6,9 @@ from dictfile import address
 
 
 startd1 ='杭州'      #  开始站
-endd1 ='六盘水'        #  到达站
-date ='2018-02-10'   #  时间
-checi = 0      #  所有    0    如果有 必须用list[ '','','' ]列出
+endd1 ='天柱山'        #  到达站
+date ='2018-02-13'   #  时间
+checi =  0       #  所有    0    如果有 必须用list[ '','','' ]列出
 seattype = 4         # 一等座   1   二等座  2   软卧  3    硬卧   4      硬座  5     无座  6    所有  0
 
 from_station =address(startd1)
@@ -63,7 +63,7 @@ def returnxpath(date, from_station, to_station, checi , seattype):
         alldict[train_no] = zhong
 
 
-    # print(alldict)
+    print(alldict)
     # 判断是否是查询特定车次的信息
     isall = checi
     seattype = seattype
@@ -84,7 +84,7 @@ def returnxpath(date, from_station, to_station, checi , seattype):
                     return 0
     else:
         for oneche in isall:
-            # print(oneche)
+            print(oneche)
             try:
                 if seattype == 0:
                     if oneche in alldict:
@@ -106,7 +106,7 @@ def returnxpath(date, from_station, to_station, checi , seattype):
                     if oneche in alldict:
                         i = alldict[oneche]
                         if i[seattype] !=  '--' and i[seattype] != '无':
-                            # print(i[seattype])
+                            print(i[seattype])
                             return i[7]
                         else:
                             print(i[seattype])
