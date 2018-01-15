@@ -7,11 +7,11 @@ import time
 from nonstop import run
 
 
-USERNAME = '24983649@qq.com'
-PASSWORD = 'chu'
-value_fromstation = '%u5317%u4EAC%2CBJP'  # 始发站（深圳北）  在浏览器先搜索  然后查看cookies  字段  _jc_save_fromStation
-value_tostation = '%u5929%u6D25%2CTJP'    # 终点站（云浮东）    在浏览器先搜索  然后查看cookies  字段  _jc_save_toStation
-value_date = '2018-01-11'                 # 出发时间
+USERNAME = '249836495@qq.com'
+PASSWORD = 'chu123466'
+value_fromstation = '%u676D%u5DDE%2CHZH'  # 始发站（深圳北）  在浏览器先搜索  然后查看cookies  字段  _jc_save_fromStation
+value_tostation = '%u5929%u67F1%u5C71%2CQWH'    # 终点站（云浮东）    在浏览器先搜索  然后查看cookies  字段  _jc_save_toStation
+value_date = '2018-02-13'                 # 出发时间
 train_type = 'K'                          #车次类型
 
 def login_proc(username, password):
@@ -123,8 +123,8 @@ def book_proc(sel, result):
         sel.find_element_by_id("submitOrder_id").click()
         time.sleep(1)
 
-        sel.find_element_by_id("back_edit_id").click()    #   返回
-        # sel.find_element_by_id("qr_submit_id").click()    #   提交
+        #sel.find_element_by_id("back_edit_id").click()    #   返回
+        sel.find_element_by_id("qr_submit_id").click()    #   提交
 
     except:
         print('选择失败')
@@ -159,6 +159,12 @@ if __name__ == '__main__':
             print('......')
         else:
             resultt = result
-            break
+            try:
+                sel.find_element_by_xpath('//*[@id="ticket_{}"]/td[13]/a'.format(result))
+                break
+            except:
+                print('...')
+
+
 
     book_proc(sel, result)
